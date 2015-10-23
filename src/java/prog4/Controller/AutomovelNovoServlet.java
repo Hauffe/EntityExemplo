@@ -46,11 +46,17 @@ public class AutomovelNovoServlet extends HttpServlet {
         auto.setPlaca(placa);
         auto.setAnoFabricação(anoFabricacao);
         
-        
         EntityManagerFactory fabrica;
         fabrica = Persistence.createEntityManagerFactory("autobd");
         
+        EntityManager em = fabrica.createEntityManager();
+        em.getTransaction().begin();
+        em.persist(auto);
+        em.getTransaction().commit();
         
+        RequestDispatcher rd;
+        rd= request.getRequestDispatcher("/WEB-INF/View/auto-novo-forum.jsp");
+        rd.forward(request, response);
         
     }
 
