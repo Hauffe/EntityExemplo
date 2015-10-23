@@ -5,10 +5,12 @@
  */
 package prog4.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -20,8 +22,14 @@ public class Automovel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    
+    @Column(nullable = false, length=8)
     private String placa;
+    
     private int anoFabricação;
+    
+    @ManyToOne
+    private Modelo modelo;
 
     public long getId() {
         return id;
@@ -46,4 +54,14 @@ public class Automovel {
     public void setAnoFabricação(int anoFabricação) {
         this.anoFabricação = anoFabricação;
     }
+
+    public Modelo getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(Modelo modelo) {
+        this.modelo = modelo;
+    }
+    
+    
 }
